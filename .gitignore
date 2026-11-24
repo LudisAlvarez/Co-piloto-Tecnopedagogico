@@ -1,0 +1,6 @@
+node_modules
+dist
+dist-claude
+.env
+.vercel
+.nuxt-ui
