@@ -12,7 +12,7 @@ const primera = computed(() => !st.clave.tiene)
 const pasos = [
   { title: 'Abra Google AI Studio', description: 'Entre a aistudio.google.com/apikey con su cuenta de Google (puede ser la personal o la institucional).', icon: 'i-lucide-external-link' },
   { title: 'Cree la clave', description: 'Pulse «Create API key» (Crear clave de API). Si le pide un proyecto, elija el que aparece o cree uno nuevo. No tiene costo.', icon: 'i-lucide-key-round' },
-  { title: 'Cópiela y péguela aquí', description: 'Es un texto largo que empieza por «AIza». El co-piloto la prueba antes de guardarla.', icon: 'i-lucide-clipboard-paste' }
+  { title: 'Cópiela y péguela aquí', description: 'Es un texto largo que empieza por «AQ.» o por «AIza», según la cuenta. Cópiela completa con el botón de copiar. El co-piloto la prueba antes de guardarla.', icon: 'i-lucide-clipboard-paste' }
 ]
 async function guardar() {
   if (!clave.value.trim() || probando.value) return
@@ -56,7 +56,7 @@ async function quitar() { await desconectarClave(); confirmarQuitar.value = fals
           <p class="text-sm text-muted mt-2">Si el botón no abre, escriba en el navegador: <span class="font-mono">aistudio.google.com/apikey</span></p>
           <form class="flex flex-col gap-3 mt-6 pt-5 border-t border-default" @submit.prevent="guardar">
             <UFormField label="Pegue aquí su clave">
-              <UInput v-model="clave" type="password" placeholder="AIza…" autocomplete="off" class="w-full" size="lg" icon="i-lucide-key-round" />
+              <UInput v-model="clave" type="password" placeholder="AQ.… o AIza…" autocomplete="off" class="w-full" size="lg" icon="i-lucide-key-round" />
             </UFormField>
             <UAlert v-if="error" color="error" variant="subtle" icon="i-lucide-circle-x" :description="error" />
             <div class="flex flex-wrap justify-end gap-2">

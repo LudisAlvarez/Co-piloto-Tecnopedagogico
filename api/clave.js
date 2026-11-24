@@ -19,7 +19,7 @@ export default async function handler(req) {
   let b
   try { b = await req.json() } catch (e) { return json(400, { error: 'Solicitud no válida.' }) }
   const clave = String(b.clave || '').trim()
-  if (!/^[\w-]{20,200}$/.test(clave)) return json(400, { error: 'Eso no parece una clave de Gemini. Cópiela completa desde Google AI Studio.' })
+  if (!/^[\w.\-]{20,300}$/.test(clave)) return json(400, { error: 'Eso no parece una clave de Gemini. Cópiela completa desde Google AI Studio.' })
 
   const prueba = await abrirGemini(clave, JSON.stringify({ contents: [{ role: 'user', parts: [{ text: 'Responde solo: OK' }] }], generationConfig: { maxOutputTokens: 200 } }), 'generateContent')
   if (!prueba.r) return json(prueba.estado === 429 ? 429 : 400, { error: 'Gemini no aceptó la clave.', detalle: prueba.detalle || 'Error ' + prueba.estado, estado: prueba.estado })
